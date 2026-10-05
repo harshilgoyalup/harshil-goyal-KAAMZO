@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // 1. Users Collection: Customer & Worker accounts from Google SSO / Phone OTP
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if isOwner(userId);
+    }
+
+    // 2. Workers Collection: Worker profiles, KYC verification & directory listings
+    match /workers/{workerId} {
+      // Public directory view (Search by city, skill, rate)
+      allow read: if true;
+      // New worker registration & video KYC submission
+      allow create: if true;
+      // Status updates (Admin KYC approvals, availability toggle, job counts)
+      allow update: if true;
+      // Document deletions
+      allow delete: if isAuthenticated();
+    }
+
+    // 3. Bookings Collection: Service bookings between customers and workers
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if isAuthenticated();
+    }
+
+    // 4. Admin Audit & Verification Logs
+    match /admin_audit/{auditId} {
+      allow read, write: if true;
+    }
+
+    // Fallback rule for any nested or additional sub-collections
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

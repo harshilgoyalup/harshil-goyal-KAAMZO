@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff9ef" />
+  <title>Kaamzo — Local Work & Worker Hiring Platform</title>
+  <meta name="description" content="Connecting customers with trusted local workers and service providers across India. Book reliable electricians, plumbers, masons, painters, and more." />
+  <meta property="og:title" content="Kaamzo — Local Work & Worker Hiring Platform" />
+  <meta property="og:description" content="Connecting customers with trusted local workers and service providers across India. Book reliable electricians, plumbers, masons, painters, and more." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header>
+    <div class="wrap nav">
+      <a class="brand" id="brandLink" href="#home">
+        kaam<b>zo.</b>
+        <span class="brand-badge">India</span>
+      </a>
+
+      <!-- Dynamic Role-Based Desktop Navigation -->
+      <nav class="navlinks" id="mainNavLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#workers">Find Worker</a>
+        <a href="#bookings">My Bookings</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:var(--orange); font-weight:700;">Terms & Policy ↗</a>
+      </nav>
+
+      <div class="navactions">
+        <!-- Theme Toggle (Light / Dark Mode) -->
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light / Dark theme">
+          <span id="themeToggleIcon">🌙</span>
+          <span id="themeToggleText">Dark</span>
+        </button>
+
+        <!-- Live Role Toggle -->
+        <button class="role-pill role-toggle-btn" title="Switch between Customer & Worker mode">
+          <span class="role-indicator" id="roleIndicator"></span>
+          <span id="rolePillText">Customer Mode</span>
+        </button>
+
+        <!-- Live Registration Status Pill -->
+        <button type="button" class="reg-status-pill unregistered" id="headerRegStatusBadge" title="Account status · Click to manage or register">
+          <span class="status-dot"></span>
+          <span id="regStatusLabel">Guest (View Only)</span>
+        </button>
+
+        <!-- Auth Action Button (Register / Sign In or Log Out) -->
+        <button type="button" class="btn primary small" id="headerAuthBtn">
+          Register / Sign In
+        </button>
+
+        <a class="btn primary small" id="headerActionBtn" href="#workers">Find Workers</a>
+
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Open navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileDrawerOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:90;"></div>
+  <div id="mobileDrawer" style="position:fixed; top:0; right:-280px; width:280px; height:100%; background:var(--cream); z-index:95; padding:28px 24px; box-shadow:-10px 0 30px rgba(0,0,0,0.15); transition:right 0.3s ease; display:flex; flex-direction:column; gap:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <a class="brand" id="mobileBrandLink" href="#home" style="font-size:24px;">kaam<b>zo.</b></a>
+      <button id="closeMobileDrawer" style="border:0; background:none; font-size:24px; cursor:pointer;" aria-label="Close menu">&times;</button>
+    </div>
+
+    <!-- Dynamic Role-Based Mobile Navigation -->
+    <div id="mobileNavLinks" style="border-top:1px solid var(--line); padding-top:16px; display:flex; flex-direction:column; gap:16px; font-weight:700; font-size:16px;">
+      <a href="#home">Home</a>
+      <a href="#workers">Find Worker</a>
+      <a href="#bookings">My Bookings</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:var(--orange);">Terms & Policy ↗</a>
+    </div>
+
+    <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:10px;">
+      <button type="button" class="theme-toggle-btn" id="mobileThemeToggleBtn" style="width:100%; justify-content:center;">
+        <span>🌙</span> Toggle Dark / Light Theme
+      </button>
+      <button class="btn secondary small role-toggle-btn" style="width:100%;">
+        Switch Account Mode
+      </button>
+      <a class="btn primary small" id="mobileActionBtn" href="#workers" style="width:100%;">Find Worker</a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main>
+
+    <!-- ========================================================================
+         VIEW 1: HOME (Preserves original Kaamzo design)
+         ======================================================================== -->
+    <div class="page-view active" id="view-home">
+      <section class="wrap hero">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Local skills. Real opportunities.</div>
+          <h1>Find Work.<br><em>Hire Help.</em><br>Kaamzo.</h1>
+          <p class="lead">Your neighbourhood's skilled workers, all in one place. Book reliable local help or discover work opportunities near you — simply, transparently, and on your terms.</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="#workers">Find a Worker</a>
+            <a class="btn secondary" href="#register">I'm a Worker</a>
+          </div>
+          <div class="proof">
+            <span>Easy local discovery</span>
+            <span>Made for everyday work</span>
+            <span>Built for India</span>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="glow"></div>
+          <div class="float-card float-one">
+            <div class="float-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>Nearby professionals<small>Find help around you</small></div>
+          </div>
+
+          <div class="phone">
+            <div class="phone-top"><span>9:41</span><span>5G · 100%</span></div>
+            <div class="appbar">
+              <div class="app-logo">K</div>
+              <div><strong>Kaamzo</strong><small>Kaam, ab aasaan.</small></div>
+            </div>
+            <div class="screen">
+              <div class="screen-title">Who do you need today?</div>
+              <div class="screen-sub">Skilled help, close to home.</div>
+              <div class="search-fake" onclick="window.location.hash='#workers'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg> Search a service or skill...
+              </div>
+              <div class="mini-label">POPULAR NEAR YOU</div>
+
+              <div class="worker-mini" onclick="window.location.hash='#workers'">
+                <div class="worker-head">
+                  <div class="avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  </div>
+                  <div class="worker-info">
+                    <b>Electrician</b>
+                    <small>Repairs · House Wiring</small>
+                  </div>
+                  <span class="verified-tag">Listed</span>
+                </div>
+                <div class="worker-bottom">
+                  <b>From ₹399</b>
+                  <button>View</button>
+                </div>
+              </div>
+
+              <div class="worker-mini" onclick="window.location.hash='#workers'">
+                <div class="worker-head">
+                  <div class="avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                  </div>
+                  <div class="worker-info">
+                    <b>Plumber</b>
+                    <small>Pipe · Tap · Leakage</small>
+                  </div>
+                  <span class="verified-tag">Listed</span>
+                </div>
+                <div class="worker-bottom">
+                  <b>From ₹299</b>
+                  <button>View</button>
+                </div>
+              </div>
+
+              <div class="worker-mini" onclick="window.location.hash='#workers'">
+                <div class="worker-head">
+                  <div class="avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"></path><path d="M17.64 15 22 10.64"></path><path d="m20.91 3.26-1.25-1.25a2 2 0 0 0-2.83 0l-1.8 1.8a2 2 0 0 0 0 2.83l1.25 1.25"></path><path d="m14 8 2 2"></path></svg>
+                  </div>
+                  <div class="worker-info">
+                    <b>Construction Mistri</b>
+                    <small>Daily work · Site help</small>
+                  </div>
+                  <span class="verified-tag">Listed</span>
+                </div>
+                <div class="worker-bottom">
+                  <b>Daily rates</b>
+                  <button>View</button>
+                </div>
+              </div>
+            </div>
+            <div class="appnav">
+              <span class="active-tab" onclick="window.location.hash='#home'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>Home</span>
+              <span onclick="window.location.hash='#workers'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Explore</span>
+              <span onclick="window.location.hash='#bookings'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line></svg>Bookings</span>
+              <span onclick="window.location.hash='#dashboard'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</span>
+            </div>
+          </div>
+
+          <div class="float-card float-two">
+            <div class="float-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div>Skills meet opportunity<small>For customers & workers</small></div>
+          </div>
+          <div class="float-card float-three">
+            <div class="float-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div>Simple. Local. Convenient.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Bar -->
+      <div class="wrap stats">
+        <div class="stat">
+          <strong>Local-first</strong>
+          <span>Discover nearby skills</span>
+        </div>
+        <div class="stat">
+          <strong>One platform</strong>
+          <span>Workers and customers</span>
+        </div>
+        <div class="stat">
+          <strong>100% Direct</strong>
+          <span>Pay directly to worker</span>
+        </div>
+        <div class="stat">
+          <strong>Made for Bharat</strong>
+          <span>Designed for everyday use</span>
+        </div>
+      </div>
+
+      <!-- Services Grid Section -->
+      <section class="section wrap" id="services-section">
+        <div class="section-head">
+          <div class="kicker">Explore services</div>
+          <h2>Who do you need<br>to get the job done?</h2>
+          <p>From quick fixes at home to hands-on daily work, find trusted local trades in your neighbourhood.</p>
+        </div>
+        <div class="category-grid">
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">⚡</div>
+            <h3>Electricians</h3>
+            <p>Wiring, repairs and electrical installation.</p>
+            <a>Find electricians →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">🔧</div>
+            <h3>Plumbers</h3>
+            <p>Pipe repairs, taps and bathroom fittings.</p>
+            <a>Find plumbers →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">🧱</div>
+            <h3>Masons & Helpers</h3>
+            <p>Construction, site work and skilled labour.</p>
+            <a>Find workers →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">🧹</div>
+            <h3>Cleaning</h3>
+            <p>Home, office and housekeeping services.</p>
+            <a>Find cleaning help →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">🎨</div>
+            <h3>Painters</h3>
+            <p>Painting, finishing and renovation work.</p>
+            <a>Find painters →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">📦</div>
+            <h3>Loading & Moving</h3>
+            <p>Shifting, loading and moving assistance.</p>
+            <a>Find moving help →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">🌿</div>
+            <h3>Gardening</h3>
+            <p>Garden care and outdoor maintenance.</p>
+            <a>Find garden help →</a>
+          </article>
+          <article class="category" onclick="window.location.hash='#workers'">
+            <div class="cat-icon">🪚</div>
+            <h3>Carpenters & Others</h3>
+            <p>Furniture repairs, lock fittings and woodwork.</p>
+            <a>Explore all services →</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- How it Works Section -->
+      <section class="section how" id="how-section">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="kicker">How Kaamzo works</div>
+            <h2>Three simple steps.<br>One less thing to worry about.</h2>
+            <p>Designed to make finding help and finding work straightforward.</p>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div class="step-num">01</div>
+              <h3>Tell us what you need</h3>
+              <p>Choose a service, share your area and describe the job you need done.</p>
+            </article>
+            <article class="step">
+              <div class="step-num">02</div>
+              <h3>Connect locally</h3>
+              <p>Discover listed workers by skill and location, then review rates and experience before booking.</p>
+            </article>
+            <article class="step">
+              <div class="step-num">03</div>
+              <h3>Get to work</h3>
+              <p>Confirm the job schedule, coordinate directly, and pay the worker after the job is completed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Two Sides Audience Section -->
+      <section class="section wrap" id="workers-section">
+        <div class="section-head">
+          <div class="kicker">One platform, two sides</div>
+          <h2>Opportunity for workers.<br>Convenience for customers.</h2>
+          <p>Kaamzo is built to help local communities connect through skills and everyday services.</p>
+        </div>
+        <div class="two-col">
+          <article class="audience">
+            <div>
+              <div class="symbol">👷</div>
+              <h3>Your skills deserve work.</h3>
+              <p>Create a worker profile, share the services you offer, and get discovered by local customers who need your skills without paying middleman fees.</p>
+            </div>
+            <div>
+              <a class="btn primary" href="#register">Join as a worker ↗</a>
+            </div>
+          </article>
+
+          <article class="audience light">
+            <div>
+              <div class="symbol">🏡</div>
+              <h3>Help is closer than you think.</h3>
+              <p>Find trusted local service providers, check transparent daily rates, and book help on your own schedule with zero hassle.</p>
+            </div>
+            <div>
+              <a class="btn secondary" href="#workers">Find a worker →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Final CTA Banner -->
+      <section class="wrap" style="padding-bottom: 90px;">
+        <div class="cta-banner">
+          <div class="kicker">Get started with Kaamzo</div>
+          <h2>Let's make work happen.</h2>
+          <p>Whether you're looking for a job or looking for dependable help,<br>your next connection starts right here.</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="#workers">I need a worker →</a>
+            <a class="btn secondary" href="#register">I want to find work ↗</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 2: FIND WORKERS
+         ======================================================================== -->
+    <div class="page-view" id="view-workers">
+      <div class="page-header">
+        <div class="wrap">
+          <div class="kicker">DIRECTORY & DISCOVERY</div>
+          <h1>Find Trusted Local Workers</h1>
+          <p>Browse verified service providers, review experience, compare daily rates, and book directly.</p>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <!-- Live Contextual Registration Banner -->
+        <div id="workersRegStatusBanner"></div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-row-top">
+            <div class="filter-input-wrap">
+              <span class="filter-icon">🔍</span>
+              <input type="text" id="workerSearchInput" placeholder="Search by worker name, skill, or keyword (e.g. Raj, Wiring, Pipe)..." />
+            </div>
+
+            <div class="filter-input-wrap">
+              <span class="filter-icon">📍</span>
+              <select id="filterCitySelect">
+                <!-- Dynamically populated from data.js -->
+              </select>
+            </div>
+
+            <div class="filter-input-wrap">
+              <span class="filter-icon">⇅</span>
+              <select id="workerSortSelect">
+                <option value="rating">Highest Rated</option>
+                <option value="rate-asc">Rate: Low to High</option>
+                <option value="rate-desc">Rate: High to Low</option>
+                <option value="experience">Most Experienced</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Category Pill Filters -->
+          <div class="category-pills" id="categoryPillsContainer">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Worker Results Count & GPS Quick Filter -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; flex-wrap:wrap; gap:10px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <strong id="workerCountText" style="font-size: 14px; color: var(--ink);">Loading workers...</strong>
+            <button type="button" class="btn-gps-detect" id="btnGpsFindNearMe" title="Use your device's live GPS to find workers near you">
+              <span>📍</span> Use Live GPS Location
+            </button>
+          </div>
+          <button class="btn secondary small" id="clearFiltersBtn" style="padding: 6px 14px; font-size: 12px;">Reset Filters</button>
+        </div>
+
+        <!-- Workers Cards Grid -->
+        <div class="workers-grid" id="workersGrid">
+          <!-- Dynamically populated by workers.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="workersEmptyState" class="empty-state" style="display:none;">
+          <div class="empty-icon">👷</div>
+          <h3>No registered workers found</h3>
+          <p>No verified workers match this filter yet. When skilled workers complete their registration, their cards will appear here.</p>
+          <div style="display:flex; justify-content:center; gap:10px; margin-top:14px; flex-wrap:wrap;">
+            <button class="btn secondary small" onclick="document.getElementById('clearFiltersBtn').click()">Reset Filters</button>
+            <button class="btn primary small" onclick="window.toggleRoleMode()">Switch to Worker Mode ↗</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 3: WORKER REGISTRATION (Multi-Step Flow)
+         ======================================================================== -->
+    <div class="page-view" id="view-register">
+      <div class="page-header">
+        <div class="wrap">
+          <div class="kicker">JOIN AS A PROVIDER</div>
+          <h1>Register as a Kaamzo Worker</h1>
+          <p>Get discovered by customers in your area. Set your own daily rate and keep 100% of your earnings.</p>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <!-- Live Contextual Registration Banner -->
+        <div id="registerRegStatusBanner"></div>
+
+        <div class="stepper-container">
+          <div class="stepper-head">
+            <h2>Easy Worker Registration</h2>
+            <p>Join the Kaamzo platform in 1 minute. Set your daily rate, auto-fill your location via GPS, and get hired directly by customers.</p>
+          </div>
+
+          <form id="workerRegisterForm" class="easy-reg-card">
+            <!-- Section 1: Basic & Contact Info -->
+            <div class="reg-section-title">
+              <span class="reg-badge-num">1</span>
+              <span>Personal & Contact Details</span>
+            </div>
+
+            <div class="field">
+              <label for="regName">Full Name *</label>
+              <input type="text" id="regName" required placeholder="e.g. Ramesh Singh" />
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field">
+                <label for="regPhone">Mobile Phone Number (WhatsApp) *</label>
+                <input type="tel" id="regPhone" required placeholder="+91 98765 43210" pattern="[0-9+() -]{10,16}" />
+                <div class="field-hint">Customers will call and message you on this phone number.</div>
+              </div>
+              <div class="field">
+                <label for="regEmail">Email Address <small>(Optional)</small></label>
+                <input type="email" id="regEmail" placeholder="ramesh@gmail.com" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="regAadhaar">Aadhaar / ID Reference Number <small>(For Verification)</small></label>
+              <input type="text" id="regAadhaar" maxlength="14" placeholder="e.g. 5421-9874-1234" />
+            </div>
+
+            <!-- Section 2: Trade & Pricing -->
+            <div class="reg-section-title">
+              <span class="reg-badge-num">2</span>
+              <span>Work, Trade & Daily Rate</span>
+            </div>
+
+            <div class="field">
+              <label for="regService">Primary Worker Trade / Category *</label>
+              <select id="regService" required>
+                <option value="">Select your trade</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Mason / Construction">Mason / Construction Helper</option>
+                <option value="Cleaning">Cleaning & Housekeeping</option>
+                <option value="Painter">Painter</option>
+                <option value="Loading / Moving">Loading / Moving Helper</option>
+                <option value="Gardening">Gardener</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Other Service">Other Local Service</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="regSkills">Specific Skills & Specialties <small>(Comma separated)</small></label>
+              <input type="text" id="regSkills" placeholder="e.g. House wiring, Inverter repairs, MCB, Fan fitting" />
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field">
+                <label for="regExp">Experience (in years) *</label>
+                <input type="number" id="regExp" min="0" max="50" value="4" required />
+              </div>
+              <div class="field">
+                <label for="regDailyRate">Daily Rate (₹ per day) *</label>
+                <input type="number" id="regDailyRate" min="100" max="10000" step="50" value="500" required />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field">
+                <label for="regHourlyRate">Hourly Rate (₹ per hour) <small>(Optional)</small></label>
+                <input type="number" id="regHourlyRate" min="30" max="2000" step="10" value="80" />
+              </div>
+              <div class="field">
+                <label for="regAbout">Short Bio / Introduction</label>
+                <textarea id="regAbout" rows="2" placeholder="Tell customers about your experience, tools, and availability..."></textarea>
+              </div>
+            </div>
+
+            <!-- Section 3: Live GPS Location -->
+            <div class="reg-section-title">
+              <span class="reg-badge-num">3</span>
+              <span>Service Location & Live GPS</span>
+            </div>
+
+            <div style="background:var(--paper); border:1px dashed var(--line); border-radius:12px; padding:12px 16px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+              <div>
+                <strong style="font-size:13px; display:block;">Auto-Detect Live Location</strong>
+                <span style="font-size:12px; color:var(--muted);">Click to fetch your current GPS coordinates and auto-fill your city & area.</span>
+                <div id="regGpsStatus"></div>
+              </div>
+              <button type="button" class="btn-gps-detect" id="btnRegDetectGps">
+                <span>🛰️</span> Detect GPS Location
+              </button>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="field">
+                <label for="regCity">City *</label>
+                <select id="regCity" required>
+                  <option value="Ludhiana">Ludhiana</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Lucknow">Lucknow</option>
+                  <option value="Amritsar">Amritsar</option>
+                  <option value="Other">Other City</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="regArea">Locality / Area Name *</label>
+                <input type="text" id="regArea" required placeholder="e.g. Model Town, Phase 2" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="regAddress">Full Workshop / Base Address <small>(Optional)</small></label>
+              <input type="text" id="regAddress" placeholder="Shop #, Street, Colony or Landmark" />
+            </div>
+
+            <!-- Mandatory Terms & Conditions Agreement -->
+            <div class="terms-agreement-box">
+              <input type="checkbox" id="regTermsConsent" required checked />
+              <label for="regTermsConsent">
+                I have reviewed and agree to the <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer">Kaamzo Terms of Service & Privacy Policy</a> and confirm that my information is accurate.
+              </label>
+            </div>
+
+            <div style="margin-top:20px;">
+              <button type="submit" class="btn primary" id="regSubmitBtn" style="width:100%; font-size:16px; padding:14px;">
+                Complete Registration & Go Live ✓
+              </button>
+            </div>
+            <p class="notice" style="margin-top:10px; text-align:center;">
+              By submitting, your profile will be registered in Cloud Firestore and visible to local customers immediately.
+            </p>
+          </form>
+
+          <!-- Registration Success Screen -->
+          <div id="regSuccessScreen" class="easy-reg-card" style="display:none; text-align:center;">
+            <div class="success-check-icon">✓</div>
+            <h3 style="font:800 26px Manrope; margin-bottom:10px;">Welcome to Kaamzo! Profile Created.</h3>
+            <p style="color:var(--muted); font-size:14px; max-width:520px; margin:0 auto 20px;">
+              Your worker profile has been saved to Firebase Cloud Firestore and is now active in the local directory.
+            </p>
+
+            <div class="worker-preview-summary" style="margin-bottom:24px;">
+              <div class="summary-row">
+                <span>Worker Name</span>
+                <strong id="regSummaryName">Worker</strong>
+              </div>
+              <div class="summary-row">
+                <span>Trade & Rate</span>
+                <strong id="regSummaryTrade">Service · ₹500/day</strong>
+              </div>
+              <div class="summary-row">
+                <span>Location</span>
+                <strong id="regSummaryLoc">Location</strong>
+              </div>
+              <div class="summary-row">
+                <span>Status</span>
+                <strong style="color:var(--green);">✓ Active & Live in Directory</strong>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+              <button type="button" class="btn secondary" id="regViewMyProfileBtn">View Profile</button>
+              <a class="btn primary" href="#dashboard">Open Worker Dashboard ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 4: MY BOOKINGS
+         ======================================================================== -->
+    <div class="page-view" id="view-bookings">
+      <div class="page-header">
+        <div class="wrap">
+          <div class="kicker">CUSTOMER DASHBOARD</div>
+          <h1>My Bookings</h1>
+          <p>Track your scheduled services, coordinate with workers, and view past job history.</p>
+        </div>
+      </div>
+
+      <div class="wrap bookings-section">
+        <!-- Tabs Bar -->
+        <div class="tabs-bar">
+          <button class="tab-btn bookings-tab-btn active" data-tab="all">
+            All Bookings <span class="tab-count" id="countAllBookings">0</span>
+          </button>
+          <button class="tab-btn bookings-tab-btn" data-tab="upcoming">
+            Upcoming <span class="tab-count" id="countUpcomingBookings">0</span>
+          </button>
+          <button class="tab-btn bookings-tab-btn" data-tab="pending">
+            Pending <span class="tab-count" id="countPendingBookings">0</span>
+          </button>
+          <button class="tab-btn bookings-tab-btn" data-tab="completed">
+            Completed <span class="tab-count" id="countCompletedBookings">0</span>
+          </button>
+          <button class="tab-btn bookings-tab-btn" data-tab="cancelled">
+            Cancelled <span class="tab-count" id="countCancelledBookings">0</span>
+          </button>
+        </div>
+
+        <!-- Bookings List -->
+        <div id="bookingsListContainer">
+          <!-- Dynamically populated by bookings-view.js -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 5: WORKER DASHBOARD
+         ======================================================================== -->
+    <div class="page-view" id="view-dashboard">
+      <div class="page-header">
+        <div class="wrap">
+          <div class="kicker">PROVIDER PORTAL</div>
+          <h1>Worker Dashboard</h1>
+          <p>Manage your availability, accept incoming job leads, and track your daily earnings.</p>
+        </div>
+      </div>
+
+      <div class="wrap dashboard-wrap">
+        <!-- Live Contextual Registration & KYC Status Banner -->
+        <div id="dashboardRegStatusBanner"></div>
+
+        <!-- Top Profile Card -->
+        <div class="dash-top-card">
+          <div class="dash-profile">
+            <div class="dash-avatar">👷</div>
+            <div class="dash-info">
+              <h2 id="dashWorkerName">Worker Profile</h2>
+              <p id="dashWorkerTrade">Trade Professional</p>
+              <small id="dashWorkerCity" style="color:var(--muted); font-size:12px;">📍 India</small>
+            </div>
+          </div>
+
+          <div class="availability-toggle">
+            <span id="dashStatusLabel" style="font-weight:700; font-size:13px; color:var(--green);">Available for Work</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="dashAvailabilityToggle" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4 Metric Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <small>Today's Jobs</small>
+            <strong id="metricTodayJobs">0</strong>
+            <span class="trend">● Live schedule</span>
+          </div>
+          <div class="metric-card">
+            <small>Pending Requests</small>
+            <strong id="metricPendingRequests">0</strong>
+            <span class="trend" style="color:var(--orange);">● Direct customer leads</span>
+          </div>
+          <div class="metric-card">
+            <small>Completed Jobs</small>
+            <strong id="metricCompletedJobs">0</strong>
+            <span class="trend">✓ Verified ratings</span>
+          </div>
+          <div class="metric-card">
+            <small>Total Earnings</small>
+            <strong id="metricEarnings">₹0</strong>
+            <span class="trend">● 100% Direct to you</span>
+          </div>
+        </div>
+
+        <!-- Incoming Job Requests -->
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <h3>Incoming Job Requests</h3>
+            <span style="font-size: 12px; color: var(--muted);">Direct inquiries from nearby customers</span>
+          </div>
+          <div id="dashIncomingRequestsList">
+            <!-- Dynamically populated by dashboard.js -->
+          </div>
+        </div>
+
+        <!-- Active Jobs -->
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <h3>Active & Confirmed Jobs</h3>
+            <span style="font-size: 12px; color: var(--muted);">Scheduled appointments</span>
+          </div>
+          <div id="dashActiveJobsList">
+            <!-- Dynamically populated by dashboard.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 6: ABOUT PAGE
+         ======================================================================== -->
+    <div class="page-view" id="view-about">
+      <div class="page-header">
+        <div class="wrap">
+          <div class="kicker">OUR PURPOSE</div>
+          <h1>About Kaamzo</h1>
+          <p>Connecting local skills with everyday opportunities across India.</p>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="about-grid">
+          <div>
+            <h2 style="font: 800 36px Manrope; letter-spacing: -1.5px; margin-bottom: 20px;">
+              Dignity of labour, transparency of pay, and real neighbourhood support.
+            </h2>
+            <p style="color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 16px;">
+              In cities and towns across India, millions of skilled tradespeople—electricians, plumbers, masons, painters, cleaners—rely on word-of-mouth or informal street corners (chowks) to find daily work. Middlemen often extract heavy commissions, leaving workers underpaid and customers uncertain about quality.
+            </p>
+            <p style="color: var(--muted); font-size: 16px; line-height: 1.8;">
+              <strong>Kaamzo</strong> is built to change that. We provide a clean, modern digital platform where local workers can showcase their genuine expertise, set their own fair rates, and connect directly with households and businesses that need them.
+            </p>
+          </div>
+          <div class="card-box">
+            <h3 style="font: 800 22px Manrope; margin-bottom: 14px;">The Kaamzo Promise</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 15px;">
+              <li style="display:flex; gap:10px;">
+                <span style="color:var(--green); font-weight:800;">✓</span>
+                <span><strong>Zero middleman cuts:</strong> Customers pay 100% of the agreed fee directly to the worker via Cash or UPI.</span>
+              </li>
+              <li style="display:flex; gap:10px;">
+                <span style="color:var(--green); font-weight:800;">✓</span>
+                <span><strong>Transparent daily & hourly rates:</strong> No hidden surge pricing or artificial platform markups.</span>
+              </li>
+              <li style="display:flex; gap:10px;">
+                <span style="color:var(--green); font-weight:800;">✓</span>
+                <span><strong>Neighbourhood discovery:</strong> Connect with verified professionals operating right in your locality.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="icon">🤝</div>
+            <h4>Fair Wages</h4>
+            <p>Every worker deserves fair compensation that reflects their hard work, experience, and trade skills.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">📍</div>
+            <h4>Local Community</h4>
+            <p>Empowering local neighbourhood economies by keeping work, connections, and trade close to home.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">⚡</div>
+            <h4>Speed & Simplicity</h4>
+            <p>No confusing corporate layers. Simple search, clear profiles, and immediate scheduling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 7: CONTACT PAGE
+         ======================================================================== -->
+    <div class="page-view" id="view-contact">
+      <div class="page-header">
+        <div class="wrap">
+          <div class="kicker">GET IN TOUCH</div>
+          <h1>Contact & Support</h1>
+          <p>Have questions, need assistance with a booking, or want to partner with Kaamzo? We are here to help.</p>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="contact-layout">
+          <!-- Info Column -->
+          <div class="contact-info-card">
+            <div>
+              <span class="kicker" style="color:var(--orange);">HELP DESK</span>
+              <h3>We're here for workers & customers.</h3>
+              <p style="color:#b8b4ad; font-size:14px; line-height:1.7;">
+                Our community desk is active 7 days a week to ensure smooth connections and verify worker profiles.
+              </p>
+
+              <div class="contact-methods">
+                <div class="contact-item">
+                  <div class="contact-item-icon">📞</div>
+                  <div>
+                    <strong style="display:block; font-size:14px;">Toll-Free Helpline</strong>
+                    <span style="color:#a8a39a; font-size:13px;">1800-KAAMZO (1800-522-696)</span>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-item-icon">✉️</div>
+                  <div>
+                    <strong style="display:block; font-size:14px;">Email Support</strong>
+                    <span style="color:#a8a39a; font-size:13px;">support@kaamzo.in</span>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-item-icon">📍</div>
+                  <div>
+                    <strong style="display:block; font-size:14px;">Head Office</strong>
+                    <span style="color:#a8a39a; font-size:13px;">Model Town, Ludhiana & Connaught Place, New Delhi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-size:12px; color:#888; border-top:1px solid #333; padding-top:18px;">
+              Operating Hours: Monday – Sunday, 8:00 AM – 8:00 PM IST
+            </div>
+          </div>
+
+          <!-- Contact Form & FAQs -->
+          <div>
+            <div class="card-box" style="margin-bottom: 30px;">
+              <h3 style="font:800 22px Manrope; margin-bottom:6px;">Send us a Message</h3>
+              <p style="color:var(--muted); font-size:13px; margin-bottom:20px;">Fill out this quick form and our support team will respond promptly.</p>
+
+              <form id="contactForm">
+                <div class="form-grid-2">
+                  <div class="field">
+                    <label for="contactName">Your Name *</label>
+                    <input type="text" id="contactName" required placeholder="Enter your full name" />
+                  </div>
+                  <div class="field">
+                    <label for="contactPhone">Mobile Number *</label>
+                    <input type="tel" id="contactPhone" required placeholder="+91 98765 43210" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="contactEmail">Email Address</label>
+                  <input type="email" id="contactEmail" placeholder="yourname@gmail.com" />
+                </div>
+
+                <div class="field">
+                  <label for="contactTopic">Inquiry Type</label>
+                  <select id="contactTopic">
+                    <option value="booking">Help with a Worker Booking</option>
+                    <option value="worker">Worker Registration / Profile Help</option>
+                    <option value="feedback">Feedback or Suggestion</option>
+                    <option value="other">Other Inquiry</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="contactMessage">Message *</label>
+                  <textarea id="contactMessage" rows="3" required placeholder="Tell us how we can help..."></textarea>
+                </div>
+
+                <button type="submit" class="btn primary" style="width:100%;">Send Message →</button>
+              </form>
+            </div>
+
+            <!-- FAQs Accordion -->
+            <h3 style="font:800 20px Manrope; margin-bottom:14px;">Frequently Asked Questions</h3>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Is Kaamzo free to use?</span>
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer">
+                Yes! Both finding workers and registering as a worker on Kaamzo are free. Customers pay the worker directly for their labour with zero middleman deductions.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>How do payments work?</span>
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer">
+                Payments are made directly between customer and worker upon satisfactory completion of the job. You can pay via UPI (Google Pay, PhonePe, Paytm) or cash.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Are workers background verified?</span>
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer">
+                Workers undergo identity check, local trade verification, and phone verification before receiving the Active Pro badge on their profile.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <div>
+          <a class="brand" href="#home" style="color:white; font-size:26px;">kaam<b>zo.</b></a>
+          <p style="font-size:13px; color:#8d8981; max-width:320px; margin-top:6px;">
+            Local skills. Real opportunities. The modern marketplace for India's essential workforce.
+          </p>
+        </div>
+        <div class="footer-links" id="footerNavLinks">
+          <a href="#workers">Find Worker</a>
+          <a href="#bookings">My Bookings</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:var(--orange); font-weight:700;">Terms & Privacy Policy ↗</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <span>© 2026 Kaamzo Platform. <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:#aaa; text-decoration:underline;">Terms of Service & Privacy Policy</a>.</span>
+        <span>
+          Press <strong style="color:var(--orange);">Ctrl + 4</strong> for Secret Admin · 
+          <button id="secretAdminTriggerBtn" style="background:none; border:0; color:#c78005; font-size:11px; cursor:pointer; text-decoration:underline;" title="Secret Admin Dashboard (Ctrl + 4)">Open Admin Gateway</button>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ==========================================================================
+       MODAL 1: WORKER PROFILE MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="workerProfileModal">
+    <div class="modal large-modal">
+      <button class="close-btn" onclick="window.closeWorkerProfileModal()" aria-label="Close modal">×</button>
+      <div class="kicker">WORKER PROFILE</div>
+
+      <div style="display:flex; align-items:flex-start; gap:18px; margin: 14px 0 20px;">
+        <div id="profAvatar" style="width:68px; height:68px; border-radius:20px; background:var(--orange-pale); display:grid; place-items:center; font-size:32px; flex-shrink:0;">
+          ⚡
+        </div>
+        <div style="flex:1;">
+          <h3 id="profName" style="margin-bottom:4px;">Raj Kumar</h3>
+          <div id="profService" style="font-weight:700; color:var(--ink); font-size:15px;">Electrician</div>
+          <div id="profCity" style="font-size:13px; color:var(--muted); margin-top:2px;">Ludhiana · Model Town</div>
+          <div id="profRating" style="font-size:13px; color:#c78005; font-weight:700; margin-top:4px;">★ 4.9 (48 jobs completed)</div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:12px; margin-bottom:20px; text-align:center;">
+        <div>
+          <small style="font-size:10px; color:#888; text-transform:uppercase; font-weight:700; display:block;">Daily Rate</small>
+          <strong id="profRate" style="font-size:16px;">₹500/day</strong>
+        </div>
+        <div>
+          <small style="font-size:10px; color:#888; text-transform:uppercase; font-weight:700; display:block;">Hourly Rate</small>
+          <strong id="profHourly" style="font-size:16px;">₹90/hr</strong>
+        </div>
+        <div>
+          <small style="font-size:10px; color:#888; text-transform:uppercase; font-weight:700; display:block;">Availability</small>
+          <strong id="profAvailability" style="font-size:13px; color:var(--green);">● Available Today</strong>
+        </div>
+      </div>
+
+      <!-- About Section -->
+      <div style="margin-bottom:18px;">
+        <h4 style="font:800 15px Manrope; margin-bottom:6px;">About the Worker</h4>
+        <p id="profAbout" style="font-size:13px; color:#686259; line-height:1.7;">
+          Experienced certified wireman with 8+ years across Ludhiana residential and commercial spaces.
+        </p>
+      </div>
+
+      <!-- Skills Section -->
+      <div style="margin-bottom:20px;">
+        <h4 style="font:800 15px Manrope; margin-bottom:8px;">Skills & Specialties</h4>
+        <div id="profSkills" class="skills-tags">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Services & Pricing Table -->
+      <div style="margin-bottom:24px;">
+        <h4 style="font:800 15px Manrope; margin-bottom:8px;">Services Offered & Rates</h4>
+        <div id="profServicesOffered" style="background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:12px 16px;">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex; gap:12px;">
+        <button class="btn secondary" style="flex:1;" onclick="window.closeWorkerProfileModal()">Close</button>
+        <button class="btn primary" style="flex:2;" id="profBookBtn">Book Worker Now ↗</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       MODAL 2: CUSTOMER BOOKING MULTI-STEP MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal">
+      <button class="close-btn" onclick="window.closeBookingModal()" aria-label="Close modal">×</button>
+
+      <!-- STEP 1: Details Form -->
+      <div id="bookingStep1">
+        <div class="kicker">BOOK A WORKER</div>
+        <h3>Book Skilled Local Help</h3>
+        <p>Enter your location and job details. Your booking is confirmed with the worker instantly.</p>
+
+        <!-- Selected Worker Preview Badge -->
+        <div id="bookWorkerPreviewBadge" style="background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:12px 14px; margin: 16px 0; display:flex; justify-content:space-between; align-items:center;">
+          <!-- Filled by JS -->
+        </div>
+
+        <form id="customerBookingForm">
+          <div class="field">
+            <label for="bookWorkerSelect">Selected Worker</label>
+            <select id="bookWorkerSelect">
+              <!-- Options populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="bookCustomerName">Your Name *</label>
+              <input type="text" id="bookCustomerName" required placeholder="e.g. Harpreet Kaur" />
+            </div>
+            <div class="field">
+              <label for="bookCustomerPhone">Phone Number *</label>
+              <input type="tel" id="bookCustomerPhone" required placeholder="+91 98765 43210" />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="field">
+              <label for="bookCity">City *</label>
+              <input type="text" id="bookCity" required value="Ludhiana" placeholder="e.g. Ludhiana" />
+            </div>
+            <div class="field">
+              <label for="bookDate">Job Date *</label>
+              <input type="date" id="bookDate" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="bookTimeSlot">Preferred Time Slot *</label>
+            <select id="bookTimeSlot" required>
+              <option value="Morning (9:00 AM - 12:00 PM)">Morning (9:00 AM - 12:00 PM)</option>
+              <option value="Afternoon (12:00 PM - 3:00 PM)">Afternoon (12:00 PM - 3:00 PM)</option>
+              <option value="Evening (3:00 PM - 6:00 PM)">Evening (3:00 PM - 6:00 PM)</option>
+              <option value="Flexible / Anytime Today">Flexible / Anytime Today</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <label for="bookAddress" style="margin-bottom:0;">Service Address / Landmark *</label>
+              <button type="button" class="btn-gps-detect" id="btnBookDetectGps" style="padding:4px 10px; font-size:11px;">
+                <span>🛰️</span> Auto-Fill GPS Address
+              </button>
+            </div>
+            <input type="text" id="bookAddress" required placeholder="House #, Street, Colony or Landmark" />
+            <div id="bookGpsStatus"></div>
+          </div>
+
+          <div class="field">
+            <label for="bookDescription">Job Description <small>(What needs fixing?)</small></label>
+            <textarea id="bookDescription" rows="2" placeholder="e.g. Main switchboard tripping and check bathroom geyser wiring..."></textarea>
+          </div>
+
+          <!-- Terms Agreement Checkbox -->
+          <div class="terms-agreement-box">
+            <input type="checkbox" id="bookTermsConsent" required checked />
+            <label for="bookTermsConsent">
+              I agree to the <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer">Kaamzo Terms of Service & Privacy Policy</a>.
+            </label>
+          </div>
+
+          <button type="submit" class="btn primary" style="width:100%; margin-top:8px;">
+            Review & Confirm Booking →
+          </button>
+        </form>
+      </div>
+
+      <!-- STEP 2: Confirm Booking Review -->
+      <div id="bookingStep2" style="display:none;">
+        <div class="kicker">CONFIRM BOOKING</div>
+        <h3>Review Booking Details</h3>
+        <p>Please double check the job information before confirming with the worker.</p>
+
+        <div class="booking-summary-box">
+          <div class="summary-row">
+            <span>Worker:</span>
+            <strong id="confirmWorkerName">Raj Kumar</strong>
+          </div>
+          <div class="summary-row">
+            <span>Service:</span>
+            <strong id="confirmService">Electrician</strong>
+          </div>
+          <div class="summary-row">
+            <span>Location:</span>
+            <strong id="confirmLocation">Ludhiana</strong>
+          </div>
+          <div class="summary-row">
+            <span>Date:</span>
+            <strong id="confirmDate">Selected date</strong>
+          </div>
+          <div class="summary-row">
+            <span>Time:</span>
+            <strong id="confirmTime">Selected time</strong>
+          </div>
+          <div class="summary-row total">
+            <span>Estimated Amount:</span>
+            <span id="confirmTotalAmount" style="color:var(--orange); font-size:18px;">₹500</span>
+          </div>
+        </div>
+
+        <div style="background:#fff8eb; border:1px solid #fedfa7; border-radius:12px; padding:12px 14px; font-size:12px; color:#785312; margin-bottom:20px;">
+          💡 <strong>Direct Payment:</strong> No payment is charged right now. Pay the worker directly via Cash or UPI after service is completed to your satisfaction.
+        </div>
+
+        <p style="font-size:12px; color:var(--muted); margin-bottom:14px;">
+          By confirming, you acknowledge the <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" class="policy-link">Kaamzo Terms & Policy</a>.
+        </p>
+
+        <div style="display:flex; gap:12px;">
+          <button type="button" class="btn secondary" id="bookingBackToEditBtn" style="flex:1;">← Edit</button>
+          <button type="button" class="btn primary" id="finalizeBookingBtn" style="flex:2;">Confirm Booking ✓</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Booking Success -->
+      <div id="bookingStep3" style="display:none; text-align:center;">
+        <div class="success-check-icon">✓</div>
+        <h3 style="font:800 24px Manrope; margin-bottom:8px;">Booking Confirmed!</h3>
+        <p style="color:var(--muted); font-size:14px; margin-bottom:18px;">
+          Your service request has been confirmed with the worker.
+        </p>
+
+        <div style="background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:20px; text-align:left;">
+          <div class="summary-row">
+            <span>Booking ID</span>
+            <strong id="confirmedBookingIdText" style="color:var(--orange);">#KZ-84291</strong>
+          </div>
+          <div class="summary-row">
+            <span>Assigned Worker</span>
+            <strong id="confirmedWorkerNameText">Raj Kumar</strong>
+          </div>
+          <div class="summary-row">
+            <span>Schedule</span>
+            <strong id="confirmedScheduleText">Tomorrow, Oct 1 · Morning</strong>
+          </div>
+          <div class="summary-row">
+            <span>Status</span>
+            <span class="status-badge confirmed">Confirmed</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px;">
+          <button type="button" class="btn secondary" style="flex:1;" onclick="window.closeBookingModal(); window.location.hash='#bookings';">
+            View My Bookings
+          </button>
+          <button type="button" class="btn primary" style="flex:1;" onclick="window.closeBookingModal()">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       MODAL 3: ROLE SWITCHER & DEMO AUTH MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="roleModal">
+    <div class="modal">
+      <button class="close-btn" onclick="window.closeRoleModal()" aria-label="Close modal">×</button>
+      <div class="kicker">ACCOUNT ROLE</div>
+      <h3>Choose Your Mode</h3>
+      <p>Kaamzo serves both customers hiring help and workers looking for jobs.</p>
+
+      <form id="roleSwitchForm" style="margin-top:20px;">
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:22px;">
+          <label style="display:flex; align-items:flex-start; gap:12px; padding:16px; border:1px solid var(--line); border-radius:14px; cursor:pointer; background:var(--paper);">
+            <input type="radio" name="userRole" value="customer" id="roleChoiceCustomer" checked style="margin-top:4px;" />
+            <div>
+              <strong style="font-size:15px; display:block;">Continue as Customer</strong>
+              <small style="color:var(--muted); font-size:12px; display:block; margin-top:2px;">
+                Find and hire trusted local workers for home fixes, construction, and repairs.
+              </small>
+            </div>
+          </label>
+
+          <label style="display:flex; align-items:flex-start; gap:12px; padding:16px; border:1px solid var(--line); border-radius:14px; cursor:pointer; background:var(--paper);">
+            <input type="radio" name="userRole" value="worker" id="roleChoiceWorker" style="margin-top:4px;" />
+            <div>
+              <strong style="font-size:15px; display:block;">Continue as Worker</strong>
+              <small style="color:var(--muted); font-size:12px; display:block; margin-top:2px;">
+                Access the Worker Dashboard, manage availability, and accept customer job requests.
+              </small>
+            </div>
+          </label>
+        </div>
+
+        <button type="submit" class="btn primary" style="width:100%;">Save & Continue →</button>
+        <p class="notice" style="margin-top:12px;">
+          Review our <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" class="policy-link">Terms of Service & Privacy Policy</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       MODAL 4: REAL SSO GOOGLE LOGIN & REAL FIREBASE SMS OTP
+       ========================================================================== -->
+  <div class="modal-backdrop" id="ssoAuthModal">
+    <div class="modal">
+      <button class="close-btn" onclick="window.closeAuthModal()" aria-label="Close modal">×</button>
+
+      <!-- STEP 1: Google SSO Login -->
+      <div id="authStepGoogle">
+        <div class="kicker">AUTHENTICATION</div>
+        <h3 id="ssoModalTitle">Login with SSO Google Worker</h3>
+        <p id="ssoModalDesc">
+          Sign in securely with your Google Workspace / Gmail account to continue.
+        </p>
+
+        <div style="margin: 28px 0 20px;">
+          <button type="button" class="sso-google-btn" id="btnGoogleSso">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span id="ssoGoogleBtnText">Login with SSO Google Worker</span>
+          </button>
+        </div>
+
+        <p class="notice">
+          By continuing, you agree to Kaamzo's <a href="https://kaamzo-terms.vercel.app/" target="_blank" rel="noopener noreferrer" class="policy-link">Terms & Privacy Policy</a>.
+        </p>
+      </div>
+
+      <!-- STEP 2: Mobile Number & Real SMS OTP Verification -->
+      <div id="authStepOtp" style="display:none;">
+        <div class="kicker">TWO-FACTOR VERIFICATION</div>
+        <h3>Mobile Phone Verification</h3>
+        <p id="otpUserGreeting" style="font-size:13px; color:var(--green); font-weight:700;">
+          Signed in with Google
+        </p>
+
+        <p id="otpStatusMessage" style="font-size:12px; margin: 10px 0; color:var(--muted); line-height:1.5;">
+          Enter your 10-digit mobile number with country code. Firebase will send a real SMS with your 6-digit OTP.
+        </p>
+
+        <!-- Invisible or visible reCAPTCHA container required for Firebase Phone Auth -->
+        <div id="recaptcha-container" style="margin: 8px 0;"></div>
+
+        <form id="otpVerificationForm" style="margin-top:14px;">
+          <div class="field">
+            <label for="authPhoneNumber">Mobile Phone Number *</label>
+            <div style="display:flex; gap:8px;">
+              <input type="tel" id="authPhoneNumber" required placeholder="+91 98765 43210" style="flex:1;" />
+              <button type="button" class="btn secondary small" id="btnSendOtp" style="white-space:nowrap;">
+                Send OTP via SMS
+              </button>
+            </div>
+            <div class="field-hint">Include country code: e.g. +91 98765 43210</div>
+          </div>
+
+          <div class="field">
+            <label for="authOtpInput">Enter 6-Digit SMS OTP *</label>
+            <input type="text" id="authOtpInput" class="otp-box-input" maxlength="6" pattern="[0-9]{6}" required placeholder="● ● ● ● ● ●" autocomplete="one-time-code" />
+            <div class="field-hint">Enter the 6-digit code received via SMS on your mobile phone.</div>
+          </div>
+
+          <button type="submit" class="btn primary" id="btnVerifyOtpSubmit" style="width:100%; margin-top:10px;">
+            Verify OTP & Complete Login ✓
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       MODAL 5: SECRET ADMIN DASHBOARD (CTRL + 4)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="adminSecretModal">
+    <div class="admin-modal-wrap">
+      <button class="close-btn" onclick="window.closeAdminPortal()" aria-label="Close admin portal">×</button>
+
+      <!-- SCREEN 1: Admin Secret Login Gateway -->
+      <div id="adminLoginView">
+        <div style="text-align:center; max-width:440px; margin:20px auto;">
+          <div class="admin-badge-secret">RESTRICTED ACCESS · CTRL + 4</div>
+          <h2 style="font:800 28px Manrope; margin:14px 0 6px;">Kaamzo Admin Gateway</h2>
+          <p style="color:var(--muted); font-size:14px; margin-bottom:24px;">
+            Requires Gmail login, preset username, and the randomly set session passkey.
+          </p>
+
+          <!-- Generated Session Password Display -->
+          <div style="background:#fff8eb; border:1px solid #fedfa7; border-radius:14px; padding:12px; margin-bottom:20px; font-size:12px; text-align:left;">
+            <div><strong>Admin Username:</strong> <code id="adminPresetUsernameText">admin@kaamzo.in</code></div>
+            <div style="margin-top:4px;">
+              <strong>Random Session Security Key:</strong>
+              <code id="adminGeneratedPassText" style="color:var(--orange); font-weight:800;">KZ-7491#Admin</code>
+              <button type="button" id="btnRegenerateAdminPass" style="background:none; border:0; color:#854d00; text-decoration:underline; cursor:pointer; font-size:11px; margin-left:6px;">↻ Generate New</button>
+            </div>
+          </div>
+
+          <!-- Gmail Connect button -->
+          <button type="button" class="sso-google-btn" id="btnAdminGoogleSso" style="margin-bottom:14px;">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Connect Admin Gmail (SSO)</span>
+          </button>
+          <div id="adminGoogleAuthStatus" style="font-size:12px; margin-bottom:16px;"></div>
+
+          <form id="adminLoginForm" style="text-align:left;">
+            <div class="field">
+              <label for="adminUsernameInput">Admin Username</label>
+              <input type="text" id="adminUsernameInput" required value="admin@kaamzo.in" />
+            </div>
+
+            <div class="field">
+              <label for="adminPasswordInput">Session Security Key</label>
+              <input type="text" id="adminPasswordInput" required placeholder="Enter the session security key" />
+            </div>
+
+            <button type="submit" class="btn primary" style="width:100%; margin-top:8px;">
+              Unlock Admin Portal →
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: Full Admin KYC Approval Dashboard -->
+      <div id="adminDashboardView" style="display:none;">
+        <div class="admin-header">
+          <div>
+            <div class="admin-badge-secret">KAAMZO ADMIN WORKER VERIFICATION</div>
+            <h2 style="font:800 26px Manrope; margin-top:8px;">Worker Directory Management</h2>
+            <p style="color:var(--muted); font-size:13px;">
+              Review registered worker profiles, contact numbers, skills, and manage active status.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn secondary small" id="btnRefreshAdminTable">↻ Sync Firestore</button>
+            <button type="button" class="btn danger small" id="btnAdminLogout">Log Out</button>
+          </div>
+        </div>
+
+        <!-- Admin Stats Bar -->
+        <div class="admin-stats-bar">
+          <div class="admin-stat-card">
+            <small>Total Worker Applications</small>
+            <strong id="adminTotalWorkersCount">0</strong>
+          </div>
+          <div class="admin-stat-card">
+            <small>Pending Approvals</small>
+            <strong id="adminPendingKycCount" style="color:var(--orange);">0</strong>
+          </div>
+          <div class="admin-stat-card">
+            <small>Active & Approved Pros</small>
+            <strong id="adminApprovedKycCount" style="color:var(--green);">0</strong>
+          </div>
+          <div class="admin-stat-card">
+            <small>Inactive / Denied</small>
+            <strong id="adminRejectedKycCount" style="color:var(--red);">0</strong>
+          </div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="admin-filters">
+          <button type="button" class="admin-filter-tab active" data-filter="all">All Workers</button>
+          <button type="button" class="admin-filter-tab" data-filter="pending">Pending</button>
+          <button type="button" class="admin-filter-tab" data-filter="approved">Active Pros</button>
+          <button type="button" class="admin-filter-tab" data-filter="rejected">Denied</button>
+        </div>
+
+        <!-- Workers Verification Table -->
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Worker</th>
+                <th>Location / Phone</th>
+                <th>Daily Rate</th>
+                <th>Experience</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminKycTableBody">
+              <!-- Dynamically populated by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Entry Script -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

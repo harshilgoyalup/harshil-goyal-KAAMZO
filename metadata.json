@@ -1,0 +1,6 @@
+{
+  "name": "Kaamzo - Local Work & Worker Hiring Platform",
+  "description": "Connecting customers with trusted local workers and service providers across India. Book reliable electricians, plumbers, masons, painters, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
